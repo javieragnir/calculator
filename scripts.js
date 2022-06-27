@@ -17,7 +17,7 @@ function clickNumber() {
         operatorFlag = false;
         clearDisplay()
     }
-    if (displayHolder == '' || displayHolder.match(/\d/g).length < 9) {
+    if (displayHolder == '' || displayHolder == '-' || displayHolder.match(/\d/g).length < 9) {
         displayHolder += this.textContent;
         displayText.textContent = displayHolder;
         updateDisplay();
@@ -128,6 +128,9 @@ function operate(op, a, b) {
     if (result > 999999999) {
         return '999999999'
     }
+    if (result < -999999999) {
+        return '-999999999'
+    }
     return result.toString().substring(0, 9);
 }
 
@@ -146,7 +149,16 @@ const signageButton = document.querySelector('#signage');
 signageButton.addEventListener('click', clickSignage);
 
 function clickSignage() {
-    displayHolder = (Number(displayHolder) * -1).toString();
-    displayText.textContent = displayHolder;
-    updateDisplay();
+    if (displayHolder === '') {
+        displayHolder = '-'
+        displayText.textContent = displayHolder;
+        updateDisplay();
+    } else if (displayHolder === '-') {
+        displayHolder = '';
+        displayText.textContent = '0';
+    } else {
+        displayHolder = (Number(displayHolder) * -1).toString();
+        displayText.textContent = displayHolder;
+        updateDisplay();
+    }
 }
