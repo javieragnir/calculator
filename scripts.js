@@ -2,6 +2,7 @@ let displayHolder = '';
 let numberA = '';
 let currentOperator = '';
 let operatorFlag = false;
+let equalsFlag = false;
 
 // Keyboard shortcuts
 window.addEventListener('keydown', e => {
@@ -19,6 +20,10 @@ const numberButtons = document.querySelectorAll('.number');
 numberButtons.forEach(button => button.addEventListener('click', clickNumber));
 
 function clickNumber() {
+    if (equalsFlag === true) {
+        equalsFlag = false;
+        clickClear();
+    }
     if (operatorFlag === true) {
         numberA = displayHolder;
         operatorFlag = false;
@@ -54,7 +59,10 @@ const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', clickClear);
 
 function clickClear() {
-    inputTracker = [];
+    numberA = '';
+    currentOperator = '';
+    operatorFlag = false;
+    equalsFlag = false;
     clearDisplay();
  }
 
@@ -75,7 +83,13 @@ function clickOperator() {
     // Else 
         // Add this number to memory
     if (numberA !== '' && displayHolder !== '') {
-        clickEquals();
+        if (currentOperator === '') {
+            return;
+        }
+        displayHolder = operate(currentOperator, numberA, displayHolder);
+        numberA = displayHolder;
+        currentOperator = '';
+        updateDisplay();
     }
 
     currentOperator = this.id;
@@ -95,6 +109,8 @@ function clickEquals() {
     numberA = displayHolder;
     currentOperator = '';
     updateDisplay();
+
+    equalsFlag = true;
 }
 
 // Mathematical functions
