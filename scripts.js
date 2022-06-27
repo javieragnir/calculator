@@ -1,3 +1,28 @@
+let displayHolder = '';
+
+const display = document.querySelector('#display')
+const displayText = document.querySelector('#displayText')
+
+// Click on numbers
+const numberButtons = document.querySelectorAll('.number');
+numberButtons.forEach(button => button.addEventListener('click', displayNumber));
+
+// Input to display
+function updateDisplay() {
+    let input = prompt('Value')
+    displayText.textContent = input;
+}
+
+// Input number to display
+function displayNumber() {
+    if (displayHolder.length <= 9) {
+        displayHolder += this.textContent;
+        displayText.textContent = displayHolder;
+    }
+ }
+
+
+// Mathematical functions
 function add(a, b) {
     return a + b;
 }
@@ -27,3 +52,4 @@ function operate(op, a, b) {
         return;
     }
 }
+

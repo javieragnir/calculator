@@ -28,6 +28,7 @@ body * {
     ;
     gap: 6px;
     grid-template-rows: 1.2fr repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
 button,
@@ -41,7 +42,7 @@ button {
 }
 
 button:active {
-    filter: brightness(90%)
+    filter: brightness(83%)
 }
 
 #display {
