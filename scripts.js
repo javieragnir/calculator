@@ -17,7 +17,7 @@ function clickNumber() {
         operatorFlag = false;
         clearDisplay()
     }
-    if (displayHolder.length < 9) {
+    if (displayHolder == '' || displayHolder.match(/\d/g).length < 9) {
         displayHolder += this.textContent;
         displayText.textContent = displayHolder;
         updateDisplay();
@@ -72,7 +72,6 @@ function clickOperator() {
     }
 
     currentOperator = this.id;
-    console.log(currentOperator);
     operatorFlag = true;
     return;
 }
