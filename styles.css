@@ -14,7 +14,7 @@ body * {
 .container {
     height: 600px;
     width: 450px;
-    background: gray;
+    background: rgb(149, 149, 149);
     border-radius: 8px;
     padding: 12px;
     display: grid;

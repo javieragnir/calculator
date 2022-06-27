@@ -1,38 +1,71 @@
 let displayHolder = '';
-let inputTracker = [];
+let numberA = '';
+let currentOperator = '';
+
 
 const display = document.querySelector('#display')
 const displayText = document.querySelector('#displayText')
 
 // Click on numbers
 const numberButtons = document.querySelectorAll('.number');
-numberButtons.forEach(button => button.addEventListener('click', displayNumber));
+numberButtons.forEach(button => button.addEventListener('click', clickNumber));
 
-// Click on clear
-const clearButton = document.querySelector('#clear');
-clearButton.addEventListener('click', clearAll);
-
-// Input to display
-function updateDisplay() {
-    let input = prompt('Value')
-    displayText.textContent = input;
-}
-
-// Input number to display
-function displayNumber() {
+function clickNumber() {
+    if (currentOperator !== '') {
+        numberA = displayHolder;
+        clearDisplay()
+    }
     if (displayHolder.length <= 9) {
         displayHolder += this.textContent;
         displayText.textContent = displayHolder;
+        updateDisplay();
     }
  }
 
- // Clear all inputs
- function clearAll() {
-    displayHolder = '';
-    inputTracker = [];
-    displayText.textContent = 0;
+ function updateDisplay() {
+    displayText.textContent = displayHolder;
+    return;
  }
 
+// Click on clear
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', clickClear);
+
+function clickClear() {
+    inputTracker = [];
+    clearDisplay();
+ }
+
+ function clearDisplay() {
+    displayHolder = '';
+    displayText.textContent = '0';
+ }
+
+// Click on operator
+const operatorButtons = document.querySelectorAll('.operator');
+operatorButtons.forEach(button => button.addEventListener('click', clickOperator))
+
+function clickOperator() {
+    // If there are two previous numbers in memory
+        // Perform the operation on the two previous numbers
+        // Store the result as the previous number (first)
+    
+    // Else 
+        // Add this number to memory
+    currentOperator = this.id;
+    return;
+}
+
+// Click on equals
+const equalsButton = document.querySelector('#equals');
+equalsButton.addEventListener('click', clickEquals);
+
+function clickEquals() {
+    displayHolder = operate(currentOperator, numberA, displayHolder);
+    numberA = displayHolder;
+    currentOperator = '';
+    updateDisplay();
+}
 
 // Mathematical functions
 function add(a, b) {
@@ -52,16 +85,23 @@ function divi(a, b) {
 }
 
 function operate(op, a, b) {
-    if (op == '+') {
-        return add(a, b);
-    } else if (op == '-') {
-        return sub(a, b);
-    } else if (op == '*') {
-        return mult(a, b); 
-    } else if (op == '/') {
-        return divi(a, b);
+    a = Number(a);
+    b = Number(b);
+
+    let result = '';
+
+    if (op === 'plus') {
+        result = add(a, b).toString();
+    } else if (op === 'minus') {
+        result = sub(a, b).toString();
+    } else if (op === 'multiply') {
+        result = mult(a, b).toString(); 
+    } else if (op === 'divide') {
+        result = divi(a, b).toString();
     } else {
+        console.log('Error: operate function invalid operation');
         return;
     }
+    return result.substring(0, 10);
 }
 
