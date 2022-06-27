@@ -29,6 +29,19 @@ function clickNumber() {
     return;
  }
 
+// Click on decimal
+const decimalButton = document.querySelector('#decimal');
+decimalButton.addEventListener('click', clickDecimal);
+
+function clickDecimal() {
+    if (displayHolder.search('\\.') === -1) {
+        displayHolder += '.';
+        displayText.textContent = displayHolder;
+        updateDisplay();
+    }
+    return;
+}
+
 // Click on clear
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', clickClear);
