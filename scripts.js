@@ -54,7 +54,12 @@ function clickOperator() {
     
     // Else 
         // Add this number to memory
+    if (numberA !== '' && displayHolder !== '') {
+        clickEquals();
+    }
+
     currentOperator = this.id;
+    console.log(currentOperator);
     operatorFlag = true;
     return;
 }
@@ -94,13 +99,15 @@ function operate(op, a, b) {
     let result = '';
 
     if (op === 'plus') {
-        result = add(a, b)
+        result = add(a, b);
     } else if (op === 'minus') {
-        result = sub(a, b)
+        result = sub(a, b);
     } else if (op === 'multiply') {
-        result = mult(a, b)
+        result = mult(a, b);
     } else if (op === 'divide') {
-        result = divi(a, b)
+        result = divi(a, b);
+    } else if (op === '') {
+        return;
     } else {
         console.log('Error: operate function invalid operation');
         return;
