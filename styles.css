@@ -3,14 +3,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: Helvetica, sans-serif;
+    background: #a0d7ec;
+}
+
+body * {
+    font-family: inherit;
 }
 
 .container {
     height: 600px;
     width: 450px;
-    background: slategrey;
+    background: gray;
     border-radius: 8px;
-    padding: 8px;
+    padding: 12px;
     display: grid;
     grid-template-areas: 
     'display display display display'
@@ -20,10 +26,56 @@ body {
     'one two three plus'
     'nought nought dec equals'
     ;
+    gap: 6px;
+    grid-template-rows: 1.2fr repeat(5, 1fr);
 }
 
-.button {
-    border-radius: 8px;
+button,
+#display {
+    margin: 0px;
+    border-radius: 4px;
+}
+
+button {
+    font-size: 20px;
+}
+
+button:active {
+    filter: brightness(90%)
+}
+
+#display {
+    background-color: #111;
+    color: #fff;
+    text-align: right;
+    font-size: 72px;
+    font-weight: lighter;
+    vertical-align: bottom;
+    position: relative;
+    margin-bottom: 6px;
+}
+
+#display span {
+    position: absolute;
+    right: 8px;
+    bottom: 0px;
+}
+
+.number {
+    background: #444;
+    color: #fff;
+}
+
+.operator {
+    background: orange; 
+}
+
+.misc {
+    background: #fff;
+}
+
+button {
+    border: none;
 }
 
 #display {
