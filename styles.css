@@ -12,9 +12,97 @@ body {
     border-radius: 8px;
     padding: 8px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 
+    'display display display display'
+    'clear signage percent divide'
+    'seven eight nine mult'
+    'four five six minus'
+    'one two three plus'
+    'nought nought dec equals'
+    ;
 }
 
 .button {
     border-radius: 8px;
+}
+
+#display {
+    grid-area: display;
+
+}
+
+#clear {
+    grid-area: clear;
+}
+
+#signage {
+    grid-area: signage;
+}
+
+#percent {
+    grid-area: percent;
+}
+
+#divide {
+    grid-area: divide;
+}
+
+#seven {
+    grid-area: seven;
+}
+
+#eight {
+    grid-area: eight;
+}
+
+#nine {
+    grid-area: nine;
+}
+
+#multiply {
+    grid-area: mult;
+}
+
+#four {
+    grid-area: four;
+}
+
+#five {
+    grid-area: five;
+}
+
+#six {
+    grid-area: six;
+}
+
+#minus {
+    grid-area: minus;
+}
+
+#one {
+    grid-area: one;
+}
+
+#two {
+    grid-area: two;
+}
+
+#three {
+    grid-area: three;
+}
+
+#plus {
+    grid-area: plus;
+}
+
+#zero {
+    grid-area: nought;
+}
+
+#decimal {
+    grid-area: dec;
+}
+
+#equals {
+    grid-area: equals;
 }
