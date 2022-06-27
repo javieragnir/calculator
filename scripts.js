@@ -69,6 +69,9 @@ const equalsButton = document.querySelector('#equals');
 equalsButton.addEventListener('click', clickEquals);
 
 function clickEquals() {
+    if (currentOperator === '') {
+        return;
+    }
     displayHolder = operate(currentOperator, numberA, displayHolder);
     numberA = displayHolder;
     currentOperator = '';
@@ -106,8 +109,6 @@ function operate(op, a, b) {
         result = mult(a, b);
     } else if (op === 'divide') {
         result = divi(a, b);
-    } else if (op === '') {
-        return;
     } else {
         console.log('Error: operate function invalid operation');
         return;
