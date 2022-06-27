@@ -8,6 +8,13 @@ body {
 .container {
     height: 600px;
     width: 450px;
-    background: lightblue;
+    background: slategrey;
+    border-radius: 8px;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.button {
     border-radius: 8px;
 }
