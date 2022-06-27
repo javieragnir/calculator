@@ -132,3 +132,13 @@ function operate(op, a, b) {
     return result.toString().substring(0, 9);
 }
 
+// Click on back
+const backButton = document.querySelector('#back');
+backButton.addEventListener('click', clickBack);
+
+function clickBack() {
+    displayHolder = displayHolder.slice(0, displayHolder.length - 1);
+    displayText.textContent = displayHolder;
+    updateDisplay();
+}
+
