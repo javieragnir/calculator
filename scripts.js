@@ -142,3 +142,12 @@ function clickBack() {
     updateDisplay();
 }
 
+// Click on plus/minus
+const signageButton = document.querySelector('#signage');
+signageButton.addEventListener('click', clickSignage);
+
+function clickSignage() {
+    displayHolder = (Number(displayHolder) * -1).toString();
+    displayText.textContent = displayHolder;
+    updateDisplay();
+}
