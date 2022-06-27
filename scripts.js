@@ -3,6 +3,13 @@ let numberA = '';
 let currentOperator = '';
 let operatorFlag = false;
 
+// Keyboard shortcuts
+window.addEventListener('keydown', e => {
+    const key = document.querySelector(`button[data-key="${e.keyCode}"]`);
+    console.log(e.keyCode);
+    if (!key) return;
+    key.click();
+})
 
 const display = document.querySelector('#display')
 const displayText = document.querySelector('#displayText')
