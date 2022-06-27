@@ -1,6 +1,7 @@
 let displayHolder = '';
 let numberA = '';
 let currentOperator = '';
+let operatorFlag = false;
 
 
 const display = document.querySelector('#display')
@@ -11,11 +12,12 @@ const numberButtons = document.querySelectorAll('.number');
 numberButtons.forEach(button => button.addEventListener('click', clickNumber));
 
 function clickNumber() {
-    if (currentOperator !== '') {
+    if (operatorFlag === true) {
         numberA = displayHolder;
+        operatorFlag = false;
         clearDisplay()
     }
-    if (displayHolder.length <= 9) {
+    if (displayHolder.length < 9) {
         displayHolder += this.textContent;
         displayText.textContent = displayHolder;
         updateDisplay();
@@ -53,6 +55,7 @@ function clickOperator() {
     // Else 
         // Add this number to memory
     currentOperator = this.id;
+    operatorFlag = true;
     return;
 }
 
@@ -91,17 +94,20 @@ function operate(op, a, b) {
     let result = '';
 
     if (op === 'plus') {
-        result = add(a, b).toString();
+        result = add(a, b)
     } else if (op === 'minus') {
-        result = sub(a, b).toString();
+        result = sub(a, b)
     } else if (op === 'multiply') {
-        result = mult(a, b).toString(); 
+        result = mult(a, b)
     } else if (op === 'divide') {
-        result = divi(a, b).toString();
+        result = divi(a, b)
     } else {
         console.log('Error: operate function invalid operation');
         return;
     }
-    return result.substring(0, 10);
+    if (result > 999999999) {
+        return '999999999'
+    }
+    return result.toString().substring(0, 9);
 }
 
