@@ -1,4 +1,5 @@
 let displayHolder = '';
+let inputTracker = [];
 
 const display = document.querySelector('#display')
 const displayText = document.querySelector('#displayText')
@@ -6,6 +7,10 @@ const displayText = document.querySelector('#displayText')
 // Click on numbers
 const numberButtons = document.querySelectorAll('.number');
 numberButtons.forEach(button => button.addEventListener('click', displayNumber));
+
+// Click on clear
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', clearAll);
 
 // Input to display
 function updateDisplay() {
@@ -19,6 +24,13 @@ function displayNumber() {
         displayHolder += this.textContent;
         displayText.textContent = displayHolder;
     }
+ }
+
+ // Clear all inputs
+ function clearAll() {
+    displayHolder = '';
+    inputTracker = [];
+    displayText.textContent = 0;
  }
 
 
