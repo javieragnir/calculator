@@ -98,12 +98,29 @@ function clickOperator() {
 */
 
     currentOperator = this.id;
+
     if (!numberA) {
+        console.log('1');
         numberA = displayHolder;
-        operatorFlag = true;
-    } else {
+    /* } else if (equalsFlag == true) { */
+        
+    } else if (numberA && !numberB && !equalsFlag) {
+        console.log('2');
         numberB = displayHolder;
-    }
+        numberA = operate(currentOperator, numberA, numberB);
+        displayHolder = numberA;
+        numberB = '';
+        updateDisplay();
+    } /* else if (numberA && numberB) {
+        console.log('3');
+        numberA = operate(currentOperator, numberA, numberB);
+        displayHolder = numberA;
+        numberB = '';
+        operatorFlag = true;
+        updateDisplay();
+    } */
+    operatorFlag = true;
+    equalsFlag = false;
     console.log(operatorFlag);
 }
 
@@ -136,6 +153,7 @@ function clickEquals() {
     console.log('hello');
     if (currentOperator && numberA && numberB) {
         numberA = operate(currentOperator, numberA, numberB);
+        numberB = ''
         displayHolder = numberA;
         updateDisplay();
         equalsFlag = true;
