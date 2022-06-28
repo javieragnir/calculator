@@ -98,7 +98,7 @@ function clickOperator() {
 */
 
     currentOperator = this.id;
-    if (numberA == '') {
+    if (!numberA) {
         numberA = displayHolder;
         operatorFlag = true;
     } else {
@@ -138,6 +138,7 @@ function clickEquals() {
         numberA = operate(currentOperator, numberA, numberB);
         displayHolder = numberA;
         updateDisplay();
+        equalsFlag = true;
     }
 
 }
@@ -192,8 +193,13 @@ backButton.addEventListener('click', clickBack);
 
 function clickBack() {
     displayHolder = displayHolder.slice(0, displayHolder.length - 1);
-    displayText.textContent = displayHolder;
-    updateDisplay();
+    console.log(displayHolder);
+    if (displayHolder.length == 0) {
+        displayText.textContent = '0';
+    } else {
+        displayText.textContent = displayHolder;
+    }
+    return;
 }
 
 // Click on plus/minus
