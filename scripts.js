@@ -125,11 +125,20 @@ function clickEquals() {
 
     equalsFlag = true; */
 
-    if (currentOperator === '' || numberA === '') {
+    if (!currentOperator || !numberA) {
         return;
     }
-    console.log('hello');
 
+    if (!numberB) {
+        numberB = displayHolder;
+    }
+
+    console.log('hello');
+    if (currentOperator && numberA && numberB) {
+        numberA = operate(currentOperator, numberA, numberB);
+        displayHolder = numberA;
+        updateDisplay();
+    }
 
 }
 
