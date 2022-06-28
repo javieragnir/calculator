@@ -1,5 +1,6 @@
 let displayHolder = '';
 let numberA = '';
+let numberB = '';
 let currentOperator = '';
 let operatorFlag = false;
 let equalsFlag = false;
@@ -24,10 +25,10 @@ function clickNumber() {
         equalsFlag = false;
         clickClear();
     }
+    // Will move this part to the operator part itself
     if (operatorFlag === true) {
-        numberA = displayHolder;
         operatorFlag = false;
-        clearDisplay()
+        clearDisplay();
     }
     if (displayHolder == '' || displayHolder == '-' || displayHolder.match(/\d/g).length < 9) {
         displayHolder += this.textContent;
@@ -60,6 +61,7 @@ clearButton.addEventListener('click', clickClear);
 
 function clickClear() {
     numberA = '';
+    numberB = ''
     currentOperator = '';
     operatorFlag = false;
     equalsFlag = false;
@@ -82,27 +84,38 @@ function clickOperator() {
     
     // Else 
         // Add this number to memory
-    if (numberA !== '' && displayHolder !== '') {
+/*     if (numberA !== '' && displayHolder !== '') {
         if (currentOperator === '') {
             return;
         }
         displayHolder = operate(currentOperator, numberA, displayHolder);
         numberA = displayHolder;
-        currentOperator = '';
         updateDisplay();
     }
-
     currentOperator = this.id;
     operatorFlag = true;
     return;
+*/
+
+    currentOperator = this.id;
+    if (numberA == '') {
+        numberA = displayHolder;
+        operatorFlag = true;
+    } else {
+        numberB = displayHolder;
+    }
+    console.log(operatorFlag);
 }
+
+
+
 
 // Click on equals
 const equalsButton = document.querySelector('#equals');
 equalsButton.addEventListener('click', clickEquals);
 
 function clickEquals() {
-    if (currentOperator === '') {
+/*     if (currentOperator === '') {
         return;
     }
     displayHolder = operate(currentOperator, numberA, displayHolder);
@@ -110,7 +123,14 @@ function clickEquals() {
     currentOperator = '';
     updateDisplay();
 
-    equalsFlag = true;
+    equalsFlag = true; */
+
+    if (currentOperator === '' || numberA === '') {
+        return;
+    }
+    console.log('hello');
+
+
 }
 
 // Mathematical functions
