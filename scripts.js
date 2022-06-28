@@ -97,8 +97,6 @@ function clickOperator() {
     return;
 */
 
-    currentOperator = this.id;
-
     if (!numberA) {
         console.log('1');
         numberA = displayHolder;
@@ -119,6 +117,7 @@ function clickOperator() {
         operatorFlag = true;
         updateDisplay();
     } */
+    currentOperator = this.id;
     operatorFlag = true;
     equalsFlag = false;
     console.log(operatorFlag);
@@ -142,7 +141,7 @@ function clickEquals() {
 
     equalsFlag = true; */
 
-    if (!currentOperator || !numberA) {
+    if (!currentOperator || !numberA || equalsFlag) {
         return;
     }
 
